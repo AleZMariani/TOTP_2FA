@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type='text/javascript' src="http://caligatio.github.io/jsSHA/sha.js"></script>
+        <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.4.js'></script>
+        <script src="totp.js"></script>
+        <script>
+        function timer()
+        {
+            var epoch = Math.round(new Date().getTime() / 1000.0);
+            if (epoch % 30 == 0) updateTOTP();
+
+        }
+        var otp ='';
+        function updateTOTP(){
+
+          otp = totpObj.getOTP("JBSWY3DPEHPK3PXP");
+          $('#HMAC').html(otp+":"+i);
+        }
+
+        $(function () {
+          updateTOTP();
+            setInterval(timer, 1000);
+        });
+
+        </script>
+    </head>
+    <body>
+      <div id="HMAC"/>
+    </body>
+</html>
